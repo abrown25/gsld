@@ -1,4 +1,4 @@
-module multifit.gsl_multifit;
+module gsld.multifit.gsl_multifit;
 /* multifit/gsl_multifit.h
  * 
  * Copyright (C) 2000, 2007, 2010 Brian Gough
@@ -19,9 +19,9 @@ module multifit.gsl_multifit;
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-import matrix.gsl_matrix_double;
-import vector.gsl_vector_double;
-import block.gsl_block_double;
+import gsld.matrix.gsl_matrix_double;
+import gsld.vector.gsl_vector_double;
+import gsld.block.gsl_block_double;
 
 extern (C)
 {
@@ -425,8 +425,6 @@ unittest
   gsl_multifit_linear_workspace* work = gsl_multifit_linear_alloc(nInd, nCov);
 
   gsl_multifit_linear_svd(xMat, yVec, tol, &rank, c, cov, &chisq, work);
-  import std.stdio;
-
   assert(rank == 3);
 
   foreach(i; 0 .. nCov)

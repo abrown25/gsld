@@ -1,4 +1,4 @@
-module block.gsl_block_double;
+module gsld.block.gsl_block_double;
 
 /* block/gsl_block_double.h
  * 

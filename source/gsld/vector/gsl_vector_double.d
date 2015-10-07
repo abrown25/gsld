@@ -1,4 +1,4 @@
-module vector.gsl_vector_double;
+module gsld.vector.gsl_vector_double;
 
 /* vector/gsl_vector_double.h
  * 
@@ -19,7 +19,7 @@ module vector.gsl_vector_double;
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-import block.gsl_block_double;
+import gsld.block.gsl_block_double;
 import core.stdc.stdio;
 
 extern (C)
