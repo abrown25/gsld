@@ -23,6 +23,8 @@ import gsld.matrix.gsl_matrix_double;
 import gsld.vector.gsl_vector_double;
 import gsld.block.gsl_block_double;
 
+import unit_threaded: Name;
+
 extern (C)
 {
   struct gsl_multifit_linear_workspace 
@@ -289,6 +291,7 @@ double[] d_gsl_regress_pValues(double[] outcome, double[] covariates)
   return pValues;
 }
 
+@Name("LRegressionAndResiduals")
 unittest
 {
   import std.math : approxEqual;
@@ -388,6 +391,7 @@ unittest
   gsl_vector_free(c);
 }
 
+@Name("LRegressionOnDegenerateMatrix")
 unittest
 {
   import std.math : approxEqual;  

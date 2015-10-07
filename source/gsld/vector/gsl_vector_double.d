@@ -22,6 +22,8 @@ module gsld.vector.gsl_vector_double;
 import gsld.block.gsl_block_double;
 import core.stdc.stdio;
 
+import unit_threaded: Name;
+
 extern (C)
 {
   struct gsl_vector
@@ -165,6 +167,7 @@ gsl_vector* d_gsl_vector_double_set(double[] vector)
   return vec;
 }
 
+@Name("test_gsl_vector_double_set")
 unittest
 {
   double[] x = [1, 2, 1, 5, 1, 9, 5, 1, 1, 2, 9, 8, 1, 8, 7, 1, 1, 4, 1, 5];
