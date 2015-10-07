@@ -177,6 +177,8 @@ extern (C)
 			 gsl_multifit_robust_workspace *w);
  int gsl_multifit_robust_est(const gsl_vector * x, const gsl_vector * c,
 			     const gsl_matrix * cov, double *y, double *y_err);
+
+ double gsl_cdf_tdist_P(double x, double nu);
 }
 
 gsl_vector* d_gsl_vector_set(double[] vector);
@@ -196,43 +198,125 @@ double[] d_gsl_regress_covariates(double[] outcome, double[] covariates)
   double chisq;
   double tol = 2.3e-16;
   size_t rank = 0;
-  gsl_vector* out_ = d_gsl_vector_set(outcome);
+
+  gsl_matrix * cov = gsl_matrix_alloc(nRow, nCol);
+
+  foreach (i; 0 .. nRow)
+  {
+    foreach (j; 0 .. nCol)
+    {
+      gsl_matrix_set(cov, i, j, covariates[i + j * nRow]);
+    }
+  }
+  gsl_vector * out_ = gsl_vector_alloc(outcome.length);
+
+  foreach (i; 0 .. outcome.length)
+  {
+    gsl_vector_set(out_, i, outcome[i]);
+  }
+
+  // gsl_vector* out_ = d_gsl_vector_set(outcome);
   // gsl_matrix* cov = d_gsl_matrix_set(covariates, nRow);
   gsl_multifit_linear_workspace* work = gsl_multifit_linear_alloc(nRow, nCol);
 
-  // gsl_multifit_linear(cov, out_, c, covariance, &chisq, work);
+  gsl_multifit_linear(cov, out_, c, covariance, &chisq, work);
 
-  // foreach(i; 0 .. nCol)
-  // {
-  //   coefficients[i] = gsl_vector_get(c, i);
-  // }
-  // gsl_multifit_linear_free(work);
-  // gsl_matrix_free(cov);
-  // gsl_matrix_free(covariance);
-  // gsl_vector_free(out_);
-  // gsl_vector_free(r);
-  // gsl_vector_free(c);
+  foreach(i; 0 .. nCol)
+  {
+    coefficients[i] = gsl_vector_get(c, i);
+  }
+  gsl_multifit_linear_free(work);
+  gsl_matrix_free(cov);
+  gsl_matrix_free(covariance);
+  gsl_vector_free(out_);
+  gsl_vector_free(r);
+  gsl_vector_free(c);
   
   return coefficients;
 }
 
+double[] d_gsl_regress_pValues(double[] outcome, double[] covariates)
+{
+  import std.math : fabs, sqrt;
+  
+  double[] pValues;
+  size_t nRow = outcome.length;
+  size_t nCol = covariates.length / nRow;
+  pValues.length = nCol;
+  
+
+  gsl_vector* r = gsl_vector_alloc(nRow);
+  gsl_vector* c = gsl_vector_alloc(nCol);
+  gsl_matrix* covariance = gsl_matrix_alloc(nCol, nCol);
+  double chisq;
+  double tol = 2.3e-16;
+  size_t rank = 0;
+
+  gsl_matrix * cov = gsl_matrix_alloc(nRow, nCol);
+
+  foreach (i; 0 .. nRow)
+  {
+    foreach (j; 0 .. nCol)
+    {
+      gsl_matrix_set(cov, i, j, covariates[i + j * nRow]);
+    }
+  }
+  gsl_vector * out_ = gsl_vector_alloc(outcome.length);
+
+  foreach (i; 0 .. outcome.length)
+  {
+    gsl_vector_set(out_, i, outcome[i]);
+  }
+
+  // gsl_vector* out_ = d_gsl_vector_set(outcome);
+  // gsl_matrix* cov = d_gsl_matrix_set(covariates, nRow);
+  gsl_multifit_linear_workspace* work = gsl_multifit_linear_alloc(nRow, nCol);
+
+  gsl_multifit_linear(cov, out_, c, covariance, &chisq, work);
+
+  foreach(i; 0 .. nCol)
+  {
+    pValues[i] = gsl_cdf_tdist_P(-fabs(gsl_vector_get(c, i) / sqrt(gsl_matrix_get(covariance, i, i))), nRow - nCol) * 2;
+  }
+  
+  gsl_multifit_linear_free(work);
+  gsl_matrix_free(cov);
+  gsl_matrix_free(covariance);
+  gsl_vector_free(out_);
+  gsl_vector_free(r);
+  gsl_vector_free(c);
+  
+  return pValues;
+}
+
 unittest
 {
-  import std.math : approxEqual;  
-  import std.stdio;
+  import std.math : approxEqual;
+  import std.range : zip;
   //Runs a sample linear regression and checks values against R residuals, tests standard, svd, and usvd methods
   double[] residualsFromR = [
 			     1.5906235, -3.1706428, -0.5620203, 0.9473047, 0.5761592
 			     ];
 
   double[] coeffFromR = [0.9493024, 0.2414637, 0.2221814, 0.2872682];
+  double[] pFromR = [0.6701421, 0.8518896, 0.8705691, 0.7709841];
 
   size_t nInd = 5;
   size_t nCov = 4;
   double[] x = [1, 2, 1, 5, 1, 9, 5, 1, 1, 2, 9, 8, 1, 8, 7, 1, 1, 4, 1, 5];
   double[] y = [7, 2, 2, 8, 5];
+  
+  double[] helperResults = d_gsl_regress_covariates(y, x);
+  foreach(i, j; zip(coeffFromR, helperResults))
+  {
+    assert(approxEqual(i, j));
+  }
 
-  double[] fuck = d_gsl_regress_covariates(y, x);
+  helperResults = d_gsl_regress_pValues(y, x);
+  foreach(i, j; zip(pFromR, helperResults))
+  {
+    assert(approxEqual(i, j));
+  }
 
   gsl_vector* yVec = gsl_vector_alloc(nInd);
   gsl_vector* r = gsl_vector_alloc(nInd);
