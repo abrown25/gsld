@@ -1,0 +1,7 @@
+name "gsld"
+description "Bindings to the GNU scientific library"
+authors "Andrew Brown"
+licence "GPL-3.0"
+libs "gsl" "gslcblas"
+targetType "library"
+sourcePaths "matrix" "block" "vector" "multifit"
