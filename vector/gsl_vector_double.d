@@ -31,19 +31,19 @@ extern (C)
     double *data;
     gsl_block *block;
     int owner;
-  };
+  }
 
   struct _gsl_vector_view
   {
     gsl_vector vector;
-  };
+  }
 
   alias gsl_vector_view = _gsl_vector_view;
 
   struct _gsl_vector_const_view
   {
     gsl_vector vector;
-  };
+  }
 
   alias gsl_vector_const_view = const _gsl_vector_const_view;
 
@@ -77,7 +77,7 @@ extern (C)
 
   _gsl_vector_const_view 
     gsl_vector_const_view_array (const double *v, size_t n);
-  
+
   _gsl_vector_const_view 
     gsl_vector_const_view_array_with_stride (const double *base,
 					     size_t stride,

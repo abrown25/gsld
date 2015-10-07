@@ -28,7 +28,7 @@ extern (C)
   {
     size_t size;
     double *data;
-  };
+  }
 
   alias gsl_block = gsl_block_struct;
 

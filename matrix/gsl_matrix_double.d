@@ -31,19 +31,19 @@ extern (C)
     double * data;
     gsl_block * block;
     int owner;
-  };
+  }
 
   struct _gsl_matrix_view
   {
     gsl_matrix matrix;
-  };
+  }
 
   alias gsl_matrix_view = _gsl_matrix_view;
 
   struct _gsl_matrix_const_view
   {
     gsl_matrix matrix;
-  };
+  }
 
   alias gsl_matrix_const_view = const _gsl_matrix_const_view;
 
@@ -197,7 +197,7 @@ extern (C)
   int gsl_matrix_fwrite (FILE * stream, const gsl_matrix * m) ;
   int gsl_matrix_fscanf (FILE * stream, gsl_matrix * m);
   int gsl_matrix_fprintf (FILE * stream, const gsl_matrix * m, const char * format);
- 
+
   int gsl_matrix_memcpy(gsl_matrix * dest, const gsl_matrix * src);
   int gsl_matrix_swap(gsl_matrix * m1, gsl_matrix * m2);
 

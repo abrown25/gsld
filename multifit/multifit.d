@@ -36,7 +36,7 @@ extern (C)
     gsl_vector * t;
     gsl_vector * xt;
     gsl_vector * D;
-  };
+  }
 
   gsl_multifit_linear_workspace *
     gsl_multifit_linear_alloc (size_t n, size_t p);
@@ -121,7 +121,7 @@ extern (C)
       int psi_deriv (const gsl_vector *r, gsl_vector *dpsi);
     }
     double tuning_default; /* default tuning constant */
-  };
+  }
 
   struct gsl_multifit_robust_stats
   {
@@ -137,7 +137,7 @@ extern (C)
     size_t numit;        /* number of iterations */
     gsl_vector *weights; /* final weights */
     gsl_vector *r;       /* final residuals y - X c */
-  };
+  }
 
   struct gsl_multifit_robust_workspace
   {
@@ -164,7 +164,7 @@ extern (C)
     gsl_multifit_robust_stats stats; /* various statistics */
 
     gsl_multifit_linear_workspace *multifit_p;
-  };
+  }
 
  gsl_multifit_robust_workspace *gsl_multifit_robust_alloc(const gsl_multifit_robust_type *T,
 							  const size_t n, const size_t p);
@@ -190,7 +190,7 @@ double[] d_gsl_regress_covariates(double[] outcome, double[] covariates)
   size_t nRow = outcome.length;
   size_t nCol = covariates.length / nRow;
   coefficients.length = nCol;
-  
+
 
   gsl_vector* r = gsl_vector_alloc(nRow);
   gsl_vector* c = gsl_vector_alloc(nCol);
@@ -231,19 +231,19 @@ double[] d_gsl_regress_covariates(double[] outcome, double[] covariates)
   gsl_vector_free(out_);
   gsl_vector_free(r);
   gsl_vector_free(c);
-  
+
   return coefficients;
 }
 
 double[] d_gsl_regress_pValues(double[] outcome, double[] covariates)
 {
   import std.math : fabs, sqrt;
-  
+
   double[] pValues;
   size_t nRow = outcome.length;
   size_t nCol = covariates.length / nRow;
   pValues.length = nCol;
-  
+
 
   gsl_vector* r = gsl_vector_alloc(nRow);
   gsl_vector* c = gsl_vector_alloc(nCol);
@@ -278,14 +278,14 @@ double[] d_gsl_regress_pValues(double[] outcome, double[] covariates)
   {
     pValues[i] = gsl_cdf_tdist_P(-fabs(gsl_vector_get(c, i) / sqrt(gsl_matrix_get(covariance, i, i))), nRow - nCol) * 2;
   }
-  
+
   gsl_multifit_linear_free(work);
   gsl_matrix_free(cov);
   gsl_matrix_free(covariance);
   gsl_vector_free(out_);
   gsl_vector_free(r);
   gsl_vector_free(c);
-  
+
   return pValues;
 }
 
@@ -305,7 +305,7 @@ unittest
   size_t nCov = 4;
   double[] x = [1, 2, 1, 5, 1, 9, 5, 1, 1, 2, 9, 8, 1, 8, 7, 1, 1, 4, 1, 5];
   double[] y = [7, 2, 2, 8, 5];
-  
+
   double[] helperResults = d_gsl_regress_covariates(y, x);
   foreach(i, j; zip(coeffFromR, helperResults))
   {
@@ -344,7 +344,7 @@ unittest
   {
     assert(approxEqual(coeffFromR[i], gsl_vector_get(c, i)));
   }
-  
+
   gsl_multifit_linear_residuals(xMat, yVec, c, r);
 
   foreach (i; 0 .. nInd)
@@ -358,7 +358,7 @@ unittest
   {
     assert(approxEqual(coeffFromR[i], gsl_vector_get(c, i)));
   }
-  
+
   gsl_multifit_linear_residuals(xMat, yVec, c, r);
 
   foreach (i; 0 .. nInd)
@@ -372,7 +372,7 @@ unittest
   {
     assert(approxEqual(coeffFromR[i], gsl_vector_get(c, i)));
   }
-  
+
   gsl_multifit_linear_residuals(xMat, yVec, c, r);
 
   foreach (i; 0 .. nInd)
@@ -433,7 +433,7 @@ unittest
   {
        assert(approxEqual(coeffFromR[i], gsl_vector_get(c, i)));
   }
-  
+
   gsl_multifit_linear_residuals(xMat, yVec, c, r);
 
   foreach (i; 0 .. nInd)
@@ -448,7 +448,7 @@ unittest
   {
     assert(approxEqual(coeffFromR[i], gsl_vector_get(c, i)));
   }
-  
+
   gsl_multifit_linear_residuals(xMat, yVec, c, r);
 
   foreach (i; 0 .. nInd)
