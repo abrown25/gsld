@@ -3,5 +3,16 @@ description "Bindings to the GNU scientific library"
 authors "Andrew Brown"
 licence "GPL-3.0"
 libs "gsl" "gslcblas"
-targetType "library"
-sourcePaths "matrix" "block" "vector" "multifit"
+dependency "unit-threaded" version="~>0.5.3"
+
+configuration "test" {
+    targetPath  "test"
+    targetType  "executable"
+    targetName  "test"
+    sourcePaths "test" "source"
+}
+
+configuration "main" {
+    targetType "library"
+}
+

@@ -1,4 +1,4 @@
-module matrix.gsl_matrix_double;
+module gsld.matrix.gsl_matrix_double;
 /* matrix/gsl_matrix_double.h
  * 
  * Copyright (C) 1996, 1997, 1998, 1999, 2000, 2007 Gerard Jungman, Brian Gough
@@ -17,9 +17,11 @@ module matrix.gsl_matrix_double;
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
-import vector.gsl_vector_double;
-import block.gsl_block_double;
+import gsld.vector.gsl_vector_double;
+import gsld.block.gsl_block_double;
 import core.stdc.stdio;
+
+import unit_threaded: Name;
 
 extern (C)
 {
@@ -263,6 +265,7 @@ gsl_matrix* d_gsl_matrix_double_set(double[] vector, size_t nRow)
   return matrix;
 }
 
+@Name("test_gsl_matrix_double_set")
 unittest
 {
   double[] x = [1, 2, 1, 5, 1, 9, 5, 1, 1, 2, 9, 8, 1, 8, 7, 1, 1, 4, 1, 5];

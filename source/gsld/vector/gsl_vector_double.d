@@ -1,4 +1,4 @@
-module vector.gsl_vector_double;
+module gsld.vector.gsl_vector_double;
 
 /* vector/gsl_vector_double.h
  * 
@@ -19,8 +19,10 @@ module vector.gsl_vector_double;
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-import block.gsl_block_double;
+import gsld.block.gsl_block_double;
 import core.stdc.stdio;
+
+import unit_threaded: Name;
 
 extern (C)
 {
@@ -165,6 +167,7 @@ gsl_vector* d_gsl_vector_double_set(double[] vector)
   return vec;
 }
 
+@Name("test_gsl_vector_double_set")
 unittest
 {
   double[] x = [1, 2, 1, 5, 1, 9, 5, 1, 1, 2, 9, 8, 1, 8, 7, 1, 1, 4, 1, 5];
