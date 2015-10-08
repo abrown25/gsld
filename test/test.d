@@ -12,5 +12,6 @@ int main(string[] args)
         gsld.matrix.gsl_matrix_double,
         gsld.vector.gsl_vector_double,
         gsld.multifit.gsl_multifit,
+	gsld.cdf.gsl_cdf
     );
 }
