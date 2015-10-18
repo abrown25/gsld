@@ -18,10 +18,7 @@ module gsld.rng.gsl_rng;
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-//import std.stdc.stdlib;
-//#include <gsl/gsl_types.h>
-//#include <gsl/gsl_errno.h>
-//#include <gsl/gsl_inline.h>
+import core.stdc.stdio: FILE;
 
 import unit_threaded: Name;
 
@@ -117,93 +114,91 @@ extern (C)
   extern __gshared  ulong gsl_rng_default_seed;
 
   gsl_rng *gsl_rng_alloc (const gsl_rng_type * T);
-  //int gsl_rng_memcpy (gsl_rng * dest, const gsl_rng * src);
-  //gsl_rng *gsl_rng_clone (const gsl_rng * r);
+  int gsl_rng_memcpy (gsl_rng * dest, const gsl_rng * src);
+  gsl_rng *gsl_rng_clone (const gsl_rng * r);
 
   void gsl_rng_free (gsl_rng * r);
 
-  //void gsl_rng_set (const gsl_rng * r, ulong seed);
-  //ulong gsl_rng_max (const gsl_rng * r);
-  //ulong gsl_rng_min (const gsl_rng * r);
-  //const char *gsl_rng_name (const gsl_rng * r);
+  void gsl_rng_set (const gsl_rng * r, ulong seed);
+  ulong gsl_rng_max (const gsl_rng * r);
+  ulong gsl_rng_min (const gsl_rng * r);
+  const(char)* gsl_rng_name (const gsl_rng * r);
 
-  //int gsl_rng_fread (FILE * stream, gsl_rng * r);
-  //int gsl_rng_fwrite (FILE * stream, const gsl_rng * r);
+  int gsl_rng_fread (FILE * stream, gsl_rng * r);
+  int gsl_rng_fwrite (FILE * stream, const gsl_rng * r);
 
-  //size_t gsl_rng_size (const gsl_rng * r);
-  //void * gsl_rng_state (const gsl_rng * r);
+  size_t gsl_rng_size (const gsl_rng * r);
+  void * gsl_rng_state (const gsl_rng * r);
 
-  //void gsl_rng_print_state (const gsl_rng * r);
+  void gsl_rng_print_state (const gsl_rng * r);
 
   gsl_rng_type * gsl_rng_env_setup ();
 
-  //INLINE_DECL ulong gsl_rng_get (const gsl_rng * r);
+  ulong gsl_rng_get (const gsl_rng * r);
   double gsl_rng_uniform (const gsl_rng * r);
-  //INLINE_DECL double gsl_rng_uniform_pos (const gsl_rng * r);
-  //INLINE_DECL ulong gsl_rng_uniform_int (const gsl_rng * r, ulong n);
+  double gsl_rng_uniform_pos (const gsl_rng * r);
+  ulong gsl_rng_uniform_int (const gsl_rng * r, ulong n);
 
-  //version(HAVE_INLINE)
-  //{
+  version(HAVE_INLINE)
+  {
 
-  //  INLINE_FUN ulong
-  //  gsl_rng_get (const gsl_rng * r)
-  //  {
-  //    return (r->type->get) (r->state);
-  //  }
+    ulong
+    gsl_rng_get (const gsl_rng * r)
+    {
+      return r.type.get(r.state);
+    }
 
-  //  INLINE_FUN double
-  //  gsl_rng_uniform (const gsl_rng * r)
-  //  {
-  //    return (r->type->get_double) (r->state);
-  //  }
+    double
+    gsl_rng_uniform (const gsl_rng * r)
+    {
+      return r.type.get_double(r.state);
+    }
 
-  //  INLINE_FUN double
-  //  gsl_rng_uniform_pos (const gsl_rng * r)
-  //  {
-  //    double x ;
-  //    do
-  //    {
-  //      x = (r->type->get_double) (r->state) ;
-  //    }
-  //    while (x == 0) ;
+    double
+    gsl_rng_uniform_pos (const gsl_rng * r)
+    {
+      double x ;
+      do
+      {
+        x = r.type.get_double(r.state) ;
+      }
+      while (x == 0) ;
 
-  //    return x ;
-  //  }
+      return x ;
+    }
 
-  //  /* Note: to avoid integer overflow in (range+1) we work with scale =
-  //     range/n = (max-min)/n rather than scale=(max-min+1)/n, this reduces
-  //     efficiency slightly but avoids having to check for the out of range
-  //     value.  Note that range is typically O(2^32) so the addition of 1
-  //     is negligible in most usage. */
+    /* Note: to avoid integer overflow in (range+1) we work with scale =
+       range/n = (max-min)/n rather than scale=(max-min+1)/n, this reduces
+       efficiency slightly but avoids having to check for the out of range
+       value.  Note that range is typically O(2^32) so the addition of 1
+       is negligible in most usage. */
 
-  //  INLINE_FUN ulong
-  //  gsl_rng_uniform_int (const gsl_rng * r, ulong n)
-  //  {
-  //    ulong offset = r->type->min;
-  //    ulong range = r->type->max - offset;
-  //    ulong scale;
-  //    ulong k;
+    ulong
+    gsl_rng_uniform_int (const gsl_rng * r, ulong n)
+    {
+      ulong offset = r.type.min;
+      ulong range = r.type.max - offset;
+      ulong scale;
+      ulong k;
 
-  //    if (n > range || n == 0) 
-  //    {
-  //      GSL_ERROR_VAL ("invalid n, either 0 or exceeds maximum value of generator",
-  //                     GSL_EINVAL, 0) ;
-  //    }
+      if (n > range || n == 0) 
+      {
+        GSL_ERROR_VAL ("invalid n, either 0 or exceeds maximum value of generator",
+                       GSL_EINVAL, 0) ;
+      }
 
-  //    scale = range / n;
+      scale = range / n;
 
-  //    do
-  //    {
-  //      k = (((r->type->get) (r->state)) - offset) / scale;
-  //    }
-  //    while (k >= n);
+      do
+      {
+        k = ((r.type.get(r.state)) - offset) / scale;
+      }
+      while (k >= n);
 
-  //    return k;
-  //  }
-  //}
+      return k;
+    }
+  }
 }
-
-__gshared gsl_rng_type* TT ;
 
 @Name("RngTestBaseOnGSLExample")
 unittest
@@ -234,6 +229,7 @@ unittest
 @Name("RngTestAvailableGenerators")
 unittest
 {
+  // This unittest shows the list of available random generators
   import std.stdio;
   import std.conv: to;
 
