@@ -1,4 +1,4 @@
-module gsld.rng.gsl_rng;
+module gsl.rng;
 /* rng/gsl_rng.h
  * 
  * Copyright (C) 1996, 1997, 1998, 1999, 2000, 2004, 2007 James Theiler, Brian Gough
@@ -37,10 +37,9 @@ extern (C)
 
   struct gsl_rng
   {
-    const gsl_rng_type * type;
+    gsl_rng_type* type;
     void *state;
   }
-
 
   ///* These structs also need to appear in default.c so you can select
   //   them via the environment variable GSL_RNG_TYPE */

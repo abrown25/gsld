@@ -1,4 +1,4 @@
-module gsld.multifit.gsl_multifit;
+module gsl.multifit;
 /* multifit/gsl_multifit.h
  * 
  * Copyright (C) 2000, 2007, 2010 Brian Gough
@@ -19,9 +19,9 @@ module gsld.multifit.gsl_multifit;
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
 
-import gsld.matrix.gsl_matrix_double;
-import gsld.vector.gsl_vector_double;
-import gsld.block.gsl_block_double;
+import gsl.matrix_double;
+import gsl.vector_double;
+import gsl.block_double;
 
 import unit_threaded: Name;
 

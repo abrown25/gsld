@@ -1,19 +1,20 @@
-import gsld.block.gsl_block_double;
-import gsld.matrix.gsl_matrix_double;
-import gsld.vector.gsl_vector_double;
-import gsld.multifit.gsl_multifit;
-import gsld.rng.gsl_rng;
+import gsl.block_double;
+import gsl.matrix_double;
+import gsl.vector_double;
+import gsl.multifit;
+import gsl.cdf;
+import gsl.rng;
 
 import unit_threaded.runner;
 
 int main(string[] args)
 {
 	return args.runTests!(
-		gsld.block.gsl_block_double,
-		gsld.matrix.gsl_matrix_double,
-		gsld.vector.gsl_vector_double,
-		gsld.multifit.gsl_multifit,
-		gsld.cdf.gsl_cdf,
-		gsld.rng.gsl_rng,
+		gsl.block_double,
+		gsl.matrix_double,
+		gsl.vector_double,
+		gsl.multifit,
+		gsl.cdf,
+		gsl.rng,
 	);
 }

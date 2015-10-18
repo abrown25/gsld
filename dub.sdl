@@ -3,7 +3,7 @@ description "Bindings to the GNU scientific library"
 authors "Andrew Brown"
 licence "GPL-3.0"
 libs "gsl" "gslcblas"
-dependency "unit-threaded" version="~>0.5.3"
+dependency "unit-threaded" version="~>0.5.4"
 
 configuration "test" {
     targetPath  "test"
