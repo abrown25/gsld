@@ -10,7 +10,7 @@ configuration "test" {
     targetType  "executable"
     targetName  "test"
     sourcePaths "test" "source"
-    excludedSourceFiles "source/gsld/randist/*" "source/gsld/rng/*"
+    excludedSourceFiles "source/gsld/randist/*"
 }
 
 configuration "main" {
