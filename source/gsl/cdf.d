@@ -1,4 +1,4 @@
-module gsld.cdf.gsl_cdf;
+module gsl.cdf;
 /* cdf/gsl_cdf.h
  * 
  * Copyright (C) 2002 Jason H. Stover.

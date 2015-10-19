@@ -1,4 +1,4 @@
-module gsld.matrix.gsl_matrix_double;
+module gsl.matrix_double;
 /* matrix/gsl_matrix_double.h
  * 
  * Copyright (C) 1996, 1997, 1998, 1999, 2000, 2007 Gerard Jungman, Brian Gough
@@ -17,8 +17,8 @@ module gsld.matrix.gsl_matrix_double;
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
-import gsld.vector.gsl_vector_double;
-import gsld.block.gsl_block_double;
+import gsl.vector_double;
+import gsl.block_double;
 import core.stdc.stdio;
 
 import unit_threaded: Name;
