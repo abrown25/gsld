@@ -16,5 +16,6 @@ int main(string[] args)
 		gsl.multifit,
 		gsl.cdf,
 		gsl.rng,
+		gsl.randist,
 	);
 }
