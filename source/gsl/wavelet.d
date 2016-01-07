@@ -23,11 +23,8 @@ module gsl.wavelet;
 */
 
 import gsl.errno;
-
-/*
-#include <gsl/gsl_vector_double.h>
-#include <gsl/gsl_matrix_double.h>
-*/
+import gsl.matrix_double;
+import gsl.vector_double;
 
 extern (C){
 

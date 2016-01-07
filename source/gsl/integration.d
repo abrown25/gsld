@@ -24,6 +24,7 @@ module gsl.integration;
 */
 
 import gsl.math;
+import gsl.sys;
 
 
 /* Workspace for adaptive integrators */
@@ -96,7 +97,7 @@ void gsl_integration_qawo_table_free (gsl_integration_qawo_table* t);
 
 /* Definition of an integration rule */
 
-gsl_integration_rule void function(const(gsl_function)* f, double a, double b, double* result, double* abserr, double* defabs, double* resabs);
+alias gsl_integration_rule = void function(const(gsl_function)* f, double a, double b, double* result, double* abserr, double* defabs, double* resabs);
 void gsl_integration_qk15 (const(gsl_function)* f, double a, double b, double* result, double* abserr, double* resabs, double* resasc);
 void gsl_integration_qk21 (const(gsl_function)* f, double a, double b, double* result, double* abserr, double* resabs, double* resasc);
 void gsl_integration_qk31 (const(gsl_function)* f, double a, double b, double* result, double* abserr, double* resabs, double* resasc);

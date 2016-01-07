@@ -24,7 +24,7 @@ module gsl.message;
 
 extern (C){
 
-void gsl_message(const(char)* message, const(char)* file, int line, unsigned int mask);
+void gsl_message(const(char)* message, const(char)* file, int line, uint mask);
 
 enum GSL_MESSAGE_MASK = 0xffffffffu; /* default all messages allowed */
 
