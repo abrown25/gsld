@@ -60,17 +60,17 @@ alias gsl_const_complex_packed_long_double_ptr = const(real)*;
 
 struct gsl_complex_long_double
 {
-    real dat[2];
+    real* dat; // vector of length 2
 }
 
 struct gsl_complex
 {
-    double dat[2];
+    double* dat; // vector of length 2
 }
 
 struct gsl_complex_float
 {
-    float dat[2];
+    float* dat; // vector of length 2
 }
 
 /************************************  gsl_complex_math.h ****************************************/
