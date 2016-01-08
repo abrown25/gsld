@@ -18,7 +18,7 @@ module gsl.odeiv;
  */
 
 /*
-* D interface file for gsl_odeiv.h and odeiv2.h
+* D interface file for gsl_odeiv.h and gsl_odeiv2.h
 * Author: Chibisi Chima-Okereke
 */
 
