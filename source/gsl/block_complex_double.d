@@ -19,10 +19,11 @@ module gsl.block_complex_double;
  */
 
 /*
-* D interface file for gsl_block_char.h
+* D interface file:
 * Author: Chibisi Chima-Okereke
 */
 
+import core.stdc.stdio: FILE;
 import gsl.errno;
 
 extern (C){
