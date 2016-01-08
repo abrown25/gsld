@@ -48,7 +48,7 @@ int gsl_poly_eval_derivs(const(double)* c, const(size_t) lenc, const(double) x, 
 double gsl_poly_eval(const(double)* c, const(int) len, const(double) x);
 
 gsl_complex gsl_poly_complex_eval(const(double)* c, const(int) len, const(gsl_complex) z);
-gsl_complex gsl_complex_poly_complex_eval(const gsl_complex c[], const(int) len, const(gsl_complex) z);
+gsl_complex gsl_complex_poly_complex_eval(const(gsl_complex)* c, const(int) len, const(gsl_complex) z);
 
 int gsl_poly_dd_init (double* dd, const(double)* x, const(double)* y, size_t size);
 

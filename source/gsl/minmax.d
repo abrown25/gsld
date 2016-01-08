@@ -40,12 +40,12 @@ double gsl_min (double a, double b);
 
 /* inline-friendly strongly typed versions */
 
-int function(int a, int b) GSL_MAX_INT;
-int function(int a, int b) GSL_MIN_INT;
-double function(double a, double b) GSL_MAX_DBL;
-double function(double a, double b) GSL_MIN_DBL;
-real function(real a, real b) GSL_MAX_LDBL;
-real function(real a, real b) GSL_MIN_LDBL;
+int GSL_MAX_INT(int a, int b);
+int GSL_MIN_INT(int a, int b);
+double GSL_MAX_DBL(double a, double b);
+double GSL_MIN_DBL(double a, double b);
+real GSL_MAX_LDBL(real a, real b);
+real GSL_MIN_LDBL(real a, real b);
 
 /*
 int GSL_MAX_INT (int a, int b)

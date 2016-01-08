@@ -59,10 +59,10 @@ struct gsl_integration_qaws_table
   double beta;
   int mu;
   int nu;
-  double ri[25];
-  double rj[25];
-  double rg[25];
-  double rh[25];
+  double* ri; // array of length 25
+  double* rj; // array of length 25
+  double* rg; // array of length 25
+  double* rh; // array of length 25
 }
 
 gsl_integration_qaws_table* gsl_integration_qaws_table_alloc (double alpha, double beta, int mu, int nu);
@@ -209,8 +209,8 @@ int gsl_integration_glfixed_point(double a, double b, size_t i, double* xi, doub
 struct gsl_integration_cquad_ival
 {
   double a, b;
-  double c[64];
-  double fx[33];
+  double* c; // array of length 64
+  double* fx; // array of length 33
   double igral, err;
   int depth, rdepth, ndiv;
 }

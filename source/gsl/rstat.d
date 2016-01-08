@@ -29,10 +29,10 @@ extern (C){
 struct gsl_rstat_quantile_workspace
 {
   double p;        /* p-quantile */
-  double q[5];     /* heights q_i */
-  int npos[5];     /* positions n_i */
-  double np[5];    /* desired positions n_i' */
-  double dnp[5];   /* increments dn_i' */
+  double* q;     /* array of length 5: heights q_i */
+  int* npos;     /* array of length 5: positions n_i */
+  double* np;    /* array of length 5: desired positions n_i' */
+  double* dnp;   /* array of length 5: increments dn_i' */
   size_t n;        /* number of data added */
 }
 

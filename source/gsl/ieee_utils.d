@@ -36,7 +36,7 @@ enum GSL_IEEE_TYPE_ZERO = 5;
 struct gsl_ieee_float_rep
 {
   int sign ;
-  char mantissa[24] ; /* Actual bits are 0..22, element 23 is \0 */
+  char* mantissa ; /* array of length 24 */
   int exponent ;
   int type ;
 }
@@ -44,7 +44,7 @@ struct gsl_ieee_float_rep
 struct gsl_ieee_double_rep
 {
   int sign ;
-  char mantissa[53] ; /* Actual bits are 0..51, element 52 is \0 */
+  char* mantissa ; /* Array of length 53 */
   int exponent ;
   int type ;
 }

@@ -1,4 +1,4 @@
-module gsl.types;
+module gsl.precision;
 
 /* 
  * Copyright (C) 1996, 1997, 1998, 1999, 2000 Gerard Jungman
@@ -24,8 +24,6 @@ module gsl.types;
 * D interface file:
 * Author: Chibisi Chima-Okereke
 */
-
-import gsl.types;
 
 extern (C){
 
