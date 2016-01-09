@@ -1,6 +1,6 @@
 name "gsld"
 description "Bindings to the GNU scientific library"
-authors "Andrew Brown"
+authors "Andrew Brown" "Chibisi Chima-Okereke"
 licence "GPL-3.0"
 libs "gsl" "gslcblas"
 dependency "unit-threaded" version="~>0.5.4"
