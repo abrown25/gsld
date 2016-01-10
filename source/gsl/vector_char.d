@@ -73,19 +73,12 @@ void gsl_vector_char_free (gsl_vector_char* v);
 /* Views */
 
 _gsl_vector_char_view gsl_vector_char_view_array (char* v, size_t n);
-
 _gsl_vector_char_view gsl_vector_char_view_array_with_stride (char* base, size_t stride, size_t n);
-
 _gsl_vector_char_const_view gsl_vector_char_const_view_array (const(size_t) offset, size_t n);
-
 _gsl_vector_char_const_view gsl_vector_char_const_view_array_with_stride (const(char)* base, size_t stride, size_t n);
-
 _gsl_vector_char_view gsl_vector_char_subvector (gsl_vector_char* v, size_t i, size_t n);
-
 _gsl_vector_char_view gsl_vector_char_subvector_with_stride (gsl_vector_char* v, size_t i, size_t stride, size_t n);
-
 _gsl_vector_char_const_view gsl_vector_char_const_subvector (const(gsl_vector_char)* v, size_t i, size_t n);
-
 _gsl_vector_char_const_view gsl_vector_char_const_subvector_with_stride (const(gsl_vector_char)* v, size_t i, size_t stride, size_t n);
 
 /* Operations */
@@ -97,7 +90,7 @@ int gsl_vector_char_set_basis (gsl_vector_char* v, size_t i);
 int gsl_vector_char_fread (FILE* stream, gsl_vector_char* v);
 int gsl_vector_char_fwrite (FILE* stream, const(gsl_vector_char)* v);
 int gsl_vector_char_fscanf (FILE* stream, gsl_vector_char* v);
-int gsl_vector_char_fprintf (FILE* stream, const(gsl_vector_char)* v, const char *format);
+int gsl_vector_char_fprintf (FILE* stream, const(gsl_vector_char)* v, const(char)* format);
 
 int gsl_vector_char_memcpy (gsl_vector_char* dest, const(gsl_vector_char)* src);
 
@@ -112,7 +105,7 @@ void gsl_vector_char_minmax (const(gsl_vector_char)* v, char* min_out, char* max
 
 size_t gsl_vector_char_max_index (const(gsl_vector_char)* v);
 size_t gsl_vector_char_min_index (const(gsl_vector_char)* v);
-void gsl_vector_char_minmax_index (const(gsl_vector_char)* v, size_t * imin, size_t * imax);
+void gsl_vector_char_minmax_index (const(gsl_vector_char)* v, size_t* imin, size_t* imax);
 
 int gsl_vector_char_add (gsl_vector_char* a, const(gsl_vector_char)* b);
 int gsl_vector_char_sub (gsl_vector_char* a, const(gsl_vector_char)* b);
