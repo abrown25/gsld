@@ -1,6 +1,6 @@
 module gsl.vector_long;
 /* vector/gsl_vector_long.h
- * module gsl.vector_float;
+ * 
  * Copyright (C) 1996, 1997, 1998, 1999, 2000, 2007 Gerard Jungman, Brian Gough
  * 
  * This program is free software; you can redistribute it and/or modify
