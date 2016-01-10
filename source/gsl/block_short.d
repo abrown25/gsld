@@ -26,13 +26,14 @@ module gsl.block_short;
 import core.stdc.stdio: FILE;
 import gsl.errno;
 
+extern (C){
+
 struct gsl_block_short_struct
 {
   size_t size;
   short* data;
 }
 
-extern (C){
 
 alias gsl_block_short = gsl_block_short_struct;
 
