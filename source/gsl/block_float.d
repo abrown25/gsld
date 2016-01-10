@@ -51,7 +51,7 @@ int gsl_block_float_raw_fscanf (FILE* stream, float* b, const(size_t) n, const(s
 int gsl_block_float_raw_fprintf (FILE* stream, const(float)* b, const(size_t) n, const(size_t) stride, const(char)* format);
 
 size_t gsl_block_float_size (const(gsl_block_float)* b);
-float * gsl_block_float_data (const(gsl_block_float)* b);
+float* gsl_block_float_data (const(gsl_block_float)* b);
 
 }
 
