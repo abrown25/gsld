@@ -52,7 +52,7 @@ int gsl_block_short_raw_fscanf (FILE* stream, short* b, const(size_t) n, const(s
 int gsl_block_short_raw_fprintf (FILE* stream, const(short)* b, const(size_t) n, const(size_t) stride, const(char)* format);
 
 size_t gsl_block_short_size (const(gsl_block_short)* b);
-short * gsl_block_short_data (const(gsl_block_short)* b);
+short* gsl_block_short_data (const(gsl_block_short)* b);
 
 }
 
