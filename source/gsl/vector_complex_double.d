@@ -25,7 +25,6 @@ module gsl.vector_complex_double;
 
 import gsl.errno;
 import gsl.check_range;
-import gsl.block_char;
 import gsl.complex;
 import gsl.vector_double;
 import gsl.block_complex_double;
