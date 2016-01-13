@@ -7,6 +7,7 @@ module gsl.vector;
 import gsl.vector_char;
 import gsl.vector_complex_double;
 import gsl.vector_complex_float;
+import gsl.vector_complex_long_double;
 import gsl.vector_double;
 import gsl.vector_float;
 import gsl.vector_int;
