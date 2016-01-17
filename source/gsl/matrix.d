@@ -1,3 +1,7 @@
+/*
+* D interface file:
+* Author: Chibisi Chima-Okereke
+*/
 module gsl.matrix;
 
 import gsl.matrix_complex_long_double;
