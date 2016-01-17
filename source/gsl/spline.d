@@ -19,7 +19,7 @@ module gsl.spline;
  */
 
 /*
-* D interface file for gsl_spline.h
+* D interface file for gsl_spline.h & gsl_spline2d.h
 * Author: Chibisi Chima-Okereke
 */
 

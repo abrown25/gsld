@@ -19,7 +19,7 @@ module gsl.interp;
  */
 
 /*
-* D interface file for gsl_interp.h
+* D interface file for gsl_interp.h & gsl_interp2d.h
 * Author: Chibisi Chima-Okereke
 */
 
