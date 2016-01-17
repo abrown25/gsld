@@ -1,4 +1,4 @@
-module gsl_matrix_complex_long_double;
+module gsl.matrix_complex_long_double;
 /* matrix/gsl_matrix_complex_long_double.h
  * 
  * Copyright (C) 1996, 1997, 1998, 1999, 2000, 2007 Gerard Jungman, Brian Gough
